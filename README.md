@@ -14,14 +14,13 @@ Because nums[0] + nums[1] = 2 + 7 = 9,
 return [0, 1].
 
 Code:
-'
-def twoSum(nums):
-    for i in range(len(nums)):
-        lkup = target - nums[i]
-        if lkup in nums:
-            k = nums.index(lkup)
-            if i!=k:
-                return [i,k]
-            else:
-                continue
-'
+
+  def twoSum(nums):
+      for i in range(len(nums)):
+          lkup = target - nums[i]
+          if lkup in nums:
+              k = nums.index(lkup)
+              if i!=k:
+                  return [i,k]
+              else:
+                  continue
