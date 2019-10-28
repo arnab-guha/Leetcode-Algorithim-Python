@@ -28,7 +28,7 @@ def twoSum(nums):
         continue
 ```
 
-### 53. Maximum Subarray
+### 2. Maximum Subarray
 Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
 
 ```
@@ -49,7 +49,7 @@ def maxSubArray(nums):
     max_sum = max(max_sum,carry)
   return max_sum
 ```
-### 21. Merge Two Sorted Lists
+### 3. Merge Two Sorted Lists
 Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
 ```
 Example:
@@ -74,7 +74,7 @@ def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
   return root.next
 ```
 
-### 20. Valid Parentheses
+### 4. Valid Parentheses
 Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
 
 An input string is valid if:
@@ -119,7 +119,7 @@ def isValid(s):
   return not stack
 ```
 
-### 937. Reorder Data in Log Files
+### 5. Reorder Data in Log Files
 You have an array of logs.  Each log is a space delimited string of words.
 
 For each log, the first word in each log is an alphanumeric identifier.  Then, either:
@@ -153,7 +153,7 @@ def reorderLogFiles(logs):
   return letter+number
 ```
 
-### 206. Reverse Linked List
+### 6. Reverse Linked List
 Reverse a singly linked list.
 
 Example:
@@ -175,7 +175,7 @@ def reverseList(self, head: ListNode) -> ListNode:
   return prev
 ```
 
-### 202. Happy Number
+### 7. Happy Number
 Write an algorithm to determine if a number is "happy".
 
 A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares of its digits, and repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1. Those numbers for which this process ends in 1 are happy numbers.
@@ -203,7 +203,7 @@ def isHappy(self, n: int) -> bool:
   return n==1
 ```
 
-### 121. Best Time to Buy and Sell Stock
+### 8. Best Time to Buy and Sell Stock
 Say you have an array for which the ith element is the price of a given stock on day i.
 
 If you were only permitted to complete at most one transaction (i.e., buy one and sell one share of the stock), design an algorithm to find the maximum profit.
@@ -247,3 +247,34 @@ def maxProfit(prices):
     return 0
 """        
 ```    
+### 9. Reverse Integer
+Given a 32-bit signed integer, reverse digits of an integer.
+```
+Example 1:
+
+Input: 123
+Output: 321
+Example 2:
+
+Input: -123
+Output: -321
+Example 3:
+
+Input: 120
+Output: 21
+```
+Note:
+Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−231,  231 − 1]. For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows.
+
+Code:
+```Python
+def reverse(x):
+  if x<0:
+    r = int(''.join([i for i in str(x*-1)][::-1]))*-1
+  else:
+    r = int(''.join([i for i in str(x)][::-1]))
+  if -2**31 <=r<=2**31-1:
+    return r
+  else:
+    return 0
+```
