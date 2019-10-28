@@ -279,4 +279,94 @@ def reverse(x):
     return 0
 ```
 
-### 
+### 10. Merge Sorted Array
+Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted array.
+
+Note:
+
+The number of elements initialized in nums1 and nums2 are m and n respectively.
+You may assume that nums1 has enough space (size that is greater or equal to m + n) to hold additional elements from nums2.
+```
+Example:
+
+Input:
+nums1 = [1,2,3,0,0,0], m = 3
+nums2 = [2,5,6],       n = 3
+
+Output: [1,2,2,3,5,6]
+```
+Code:
+```Python
+def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+  nums1[m:]=nums2[:n]
+  nums1.sort()
+```
+### 11. Roman to Integer
+Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
+```
+Symbol       Value
+I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+```
+For example, two is written as II in Roman numeral, just two one's added together. Twelve is written as, XII, which is simply X + II. The number twenty seven is written as XXVII, which is XX + V + II.
+
+Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not IIII. Instead, the number four is written as IV. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as IX. There are six instances where subtraction is used:
+```
+I can be placed before V (5) and X (10) to make 4 and 9.
+X can be placed before L (50) and C (100) to make 40 and 90.
+C can be placed before D (500) and M (1000) to make 400 and 900.
+Given a roman numeral, convert it to an integer. Input is guaranteed to be within the range from 1 to 3999.
+```
+```
+Example 1:
+
+Input: "III"
+Output: 3
+Example 2:
+
+Input: "IV"
+Output: 4
+Example 3:
+
+Input: "IX"
+Output: 9
+Example 4:
+
+Input: "LVIII"
+Output: 58
+Explanation: L = 50, V= 5, III = 3.
+Example 5:
+
+Input: "MCMXCIV"
+Output: 1994
+Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
+```
+Code:
+```Python
+def romanToInt(s):
+  d = {
+  'I':1,
+  'V':5,
+  'X':10,
+  'L':50,
+  'C':100,
+  'D':500,
+  'M':1000
+  }
+  a = [d[i] for i in s]
+  if len(a)==1:
+    return a[0]
+  else:
+    nums = a[0]
+    for i in range(1,len(a)):
+      if a[i]>a[i-1]:
+        nums += (a[i]-a[i-1]-a[i-1])
+      else:
+        nums+=a[i]
+    return nums
+```     
