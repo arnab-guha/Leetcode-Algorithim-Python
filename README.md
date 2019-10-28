@@ -141,7 +141,7 @@ Output: ["let1 art can","let3 art zero","let2 own kit dig","dig1 8 1 5 1","dig2 
 ```
 Code:
 ```Python
-def reorderLogFiles(self, logs: List[str]) -> List[str]:
+def reorderLogFiles(logs):
   letter = []
   number = []
   for x in logs:
@@ -152,3 +152,98 @@ def reorderLogFiles(self, logs: List[str]) -> List[str]:
   letter.sort(key=lambda letter: (letter.split()[1:],letter.split()[0]))
   return letter+number
 ```
+
+### 206. Reverse Linked List
+Reverse a singly linked list.
+
+Example:
+```
+Input: 1->2->3->4->5->NULL
+Output: 5->4->3->2->1->NULL
+```
+Code:
+###### Hint: Use a prev variable to hold the previous node and reverse the next node pointer to previous node.
+
+```Python
+def reverseList(self, head: ListNode) -> ListNode:
+  prev = None
+  while head:
+    temp = head
+    head = head.next
+    temp.next = prev
+    prev = temp
+  return prev
+```
+
+### 202. Happy Number
+Write an algorithm to determine if a number is "happy".
+
+A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares of its digits, and repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1. Those numbers for which this process ends in 1 are happy numbers.
+
+```
+Example:
+
+Input: 19
+Output: true
+Explanation:
+1^2 + 9^2 = 82
+8^2 + 2^2 = 68
+6^2 + 8^2 = 100
+1^2 + 0^2 + 0^2 = 1
+```
+Code:
+###### Hint: sum of square of the digits of a number will result in a repeating number which will help to break the infinite loop.
+
+```Python
+def isHappy(self, n: int) -> bool:
+  seen=[]
+  while n not in seen:
+    seen.append(n)
+    n = sum([int(i)**2 for i in str(n)])
+  return n==1
+```
+
+### 121. Best Time to Buy and Sell Stock
+Say you have an array for which the ith element is the price of a given stock on day i.
+
+If you were only permitted to complete at most one transaction (i.e., buy one and sell one share of the stock), design an algorithm to find the maximum profit.
+
+Note that you cannot sell a stock before you buy one.
+```
+Example 1:
+
+Input: [7,1,5,3,6,4]
+Output: 5
+Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+             Not 7-1 = 6, as selling price needs to be larger than buying price.
+Example 2:
+
+Input: [7,6,4,3,1]
+Output: 0
+Explanation: In this case, no transaction is done, i.e. max profit = 0.
+```
+
+Code:
+```Python
+def maxProfit(prices):
+  if prices:
+    maxprofit = 0
+    minprice = prices[0]
+    for x in prices:
+      minprice = min(minprice,x)
+      profit = x-minprice
+      maxprofit= max(maxprofit,profit)
+    return maxprofit
+  else:
+    return 0
+"""
+  if prices:
+    gp = 0
+    for i in range(len(prices)-1):
+      p = max(prices[i+1:])-prices[i]
+      gp = max(gp,p)
+    return gp
+  else:
+    return 0
+"""        
+```    
