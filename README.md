@@ -370,3 +370,267 @@ def romanToInt(s):
         nums+=a[i]
     return nums
 ```     
+### 12. Min Stack
+Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
+
+push(x) -- Push element x onto stack.
+pop() -- Removes the element on top of the stack.
+top() -- Get the top element.
+getMin() -- Retrieve the minimum element in the stack.
+
+```
+Example:
+
+MinStack minStack = new MinStack();
+minStack.push(-2);
+minStack.push(0);
+minStack.push(-3);
+minStack.getMin();   --> Returns -3.
+minStack.pop();
+minStack.top();      --> Returns 0.
+minStack.getMin();   --> Returns -2.
+```
+Code:
+```Python
+class MinStack:
+
+    def __init__(self):
+        self.lst = []
+
+
+    def push(self, x: int) -> None:
+        self.lst.append(x)
+
+    def pop(self) -> None:
+        self.lst.pop()
+
+    def top(self) -> int:
+        return self.lst[-1]
+
+    def getMin(self) -> int:
+        return min(self.lst)
+
+
+# Your MinStack object will be instantiated and called as such:
+# obj = MinStack()
+# obj.push(x)
+# obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.getMin()
+```
+### 13. Verifying an Alien Dictionary
+In an alien language, surprisingly they also use english lowercase letters, but possibly in a different order. The order of the alphabet is some permutation of lowercase letters.
+
+Given a sequence of words written in the alien language, and the order of the alphabet, return true if and only if the given words are sorted lexicographicaly in this alien language.
+
+```
+Example 1:
+
+Input: words = ["hello","leetcode"], order = "hlabcdefgijkmnopqrstuvwxyz"
+Output: true
+Explanation: As 'h' comes before 'l' in this language, then the sequence is sorted.
+Example 2:
+
+Input: words = ["word","world","row"], order = "worldabcefghijkmnpqstuvxyz"
+Output: false
+Explanation: As 'd' comes after 'l' in this language, then words[0] > words[1], hence the sequence is unsorted.
+```
+Code:
+```Python
+def isAlienSorted(words,order):
+  d = {}
+  for i,v in enumerate(order):
+    d[v] = i
+
+  w = []
+  for x in words:
+    w.append([d[i] for i in x])
+
+  for w1,w2 in zip(w,w[1:]):
+    if w1>w2:
+      return False
+  return True
+  ```
+
+### 14. Reverse String
+Write a function that reverses a string. The input string is given as an array of characters char[].
+
+Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
+
+You may assume all the characters consist of printable ascii characters.
+
+```
+Example 1:
+
+Input: ["h","e","l","l","o"]
+Output: ["o","l","l","e","h"]
+Example 2:
+
+Input: ["H","a","n","n","a","h"]
+Output: ["h","a","n","n","a","H"]
+```
+Code:
+
+Option 1:
+```Python
+def reverseString(s):
+  if len(s)%2==0:
+    for i in range(len(s)//2):
+      temp = s[i]
+      s[i]=s[-(i+1)]
+      s[-(i+1)] = temp
+  else:
+    for i in range((len(s)//2)+1):
+      temp = s[i]
+      s[i]=s[-(i+1)]
+      s[-(i+1)] = temp
+  return s
+```
+Option 2:
+```Python
+def reverseString(s):
+  return s[::-1]
+```
+
+### 15.Fizz Buzz
+Write a program that outputs the string representation of numbers from 1 to n.
+
+But for multiples of three it should output “Fizz” instead of the number and for the multiples of five output “Buzz”. For numbers which are multiples of both three and five output “FizzBuzz”.
+```
+Example:
+
+n = 15,
+
+Return:
+[
+    "1",
+    "2",
+    "Fizz",
+    "4",
+    "Buzz",
+    "Fizz",
+    "7",
+    "8",
+    "Fizz",
+    "Buzz",
+    "11",
+    "Fizz",
+    "13",
+    "14",
+    "FizzBuzz"
+]
+```
+Code:
+```Python
+def fizzBuzz(self, n: int) -> List[str]:
+  a=[]
+  for i in range(1,n+1):
+    if i%3==0 and i%5==0:
+      a.append('FizzBuzz')
+    elif i%3==0:
+      a.append('Fizz')
+    elif i%5==0:
+      a.append('Buzz')
+    else:
+      a.append(str(i))
+  return a
+```
+### 16. Valid Palindrome
+Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+
+Note: For the purpose of this problem, we define empty string as valid palindrome.
+```
+Example 1:
+
+Input: "A man, a plan, a canal: Panama"
+Output: true
+Example 2:
+
+Input: "race a car"
+Output: false
+```
+Code:
+```Python
+def isPalindrome(s):
+  a = ''
+  for x in s:
+    if x.isalpha() or x.isdigit():
+      a+=x
+    else:
+      continue
+  if a.lower() == a.lower()[::-1]:
+    return True
+  else:
+    return False
+```
+### 17. Palindrome Number
+Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
+```
+Example 1:
+
+Input: 121
+Output: true
+Example 2:
+
+Input: -121
+Output: false
+Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.
+Example 3:
+
+Input: 10
+Output: false
+Explanation: Reads 01 from right to left. Therefore it is not a palindrome.
+```
+Code:
+```Python
+#String Solution
+def isPalindrome(self, x: int) -> bool:
+  if x<0:
+    return False
+  if str(x)==str(x)[::-1]:
+    return True
+  else:
+    return False
+#Without string solution
+
+def reverse(num):
+  res = 0
+  while num != 0:
+    res = res * 10 + num % 10
+    num = num//10
+  return res
+
+def isPalindrome(x):
+  if x < 0:
+    return False
+  if x == reverse(x):
+    return True
+  return False
+
+  ```
+  ### 18. Climbing Stairs
+
+  You are climbing a stair case. It takes n steps to reach to the top.
+
+Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+
+Note: Given n will be a positive integer.
+```
+Example 1:
+
+Input: 2
+Output: 2
+Explanation: There are two ways to climb to the top.
+1. 1 step + 1 step
+2. 2 steps
+Example 2:
+
+Input: 3
+Output: 3
+Explanation: There are three ways to climb to the top.
+1. 1 step + 1 step + 1 step
+2. 1 step + 2 steps
+3. 2 steps + 1 step
+```
+Code:
+```Python
